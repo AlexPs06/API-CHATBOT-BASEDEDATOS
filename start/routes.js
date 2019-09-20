@@ -20,6 +20,18 @@ Route.get('/', () => {
   return { greeting: 'Hello world in JSON' }
 })
 Route.group(() => {
+  Route.post('users', 'UserController.store')
+  Route.get('users', 'UserController.index')
+  Route.get('users/:id', 'UserController.show')
+  Route.put('users/:id', 'UserController.update')
+  Route.delete('users/:id', 'UserController.delete')
+
+
+  Route.post('login', 'UserController.login')
+
+
+
+
   Route.post('profesors', 'ProfesorController.store')
   Route.get('profesors', 'ProfesorController.index')
   Route.get('profesors/:id', 'ProfesorController.show')
