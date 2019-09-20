@@ -25,4 +25,10 @@ Route.group(() => {
   Route.get('profesors/:id', 'ProfesorController.show')
   Route.put('profesors/:id', 'ProfesorController.update')
   Route.delete('profesors/:id', 'ProfesorController.delete')
+  
+  Route.post('alumnos', 'AlumnoController.store')
+  Route.get('alumnos', 'AlumnoController.index')
+  Route.get('alumnos/:id', 'AlumnoController.show')
+  Route.put('alumnos/:id', 'AlumnoController.update')
+  Route.delete('alumnos/:id', 'AlumnoController.delete')
 }).prefix('api/v1')
