@@ -14,7 +14,7 @@ class ProfesorController {
     }
 
     async store ({request, response}) {
-        const profesorInfo = request.only(['nombre', 'apellido_materno', 'apellido_paterno', 'edad', 'correo'])
+        const profesorInfo = request.only(['contraseña','nombre', 'apellido_materno', 'apellido_paterno', 'edad', 'correo'])
 
         const profesor = new Profesor()
         profesor.nombre = profesorInfo.nombre
@@ -22,13 +22,14 @@ class ProfesorController {
         profesor.apellido_paterno = profesorInfo.apellido_paterno
         profesor.edad = profesorInfo.edad
         profesor.correo = profesorInfo.correo
+        profesor.contraseña = profesorInfo.contraseña
 
         await profesor.save()
 
         return response.status(201).json(profesor)
       }
     async update ({params, request, response}) {
-        const profesorInfo = request.only(['nombre', 'apellido_materno', 'apellido_paterno', 'edad', 'correo'])
+        const profesorInfo = request.only(['contraseña','nombre', 'apellido_materno', 'apellido_paterno', 'edad', 'correo'])
 
 
         const profesor = await Profesor.find(params.id)
@@ -40,6 +41,7 @@ class ProfesorController {
         profesor.apellido_paterno = profesorInfo.apellido_paterno
         profesor.edad = profesorInfo.edad
         profesor.correo = profesorInfo.correo
+        profesor.contraseña = profesorInfo.contraseña
 
 
         await profesor.save()
