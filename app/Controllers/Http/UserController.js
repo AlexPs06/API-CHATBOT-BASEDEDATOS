@@ -24,6 +24,7 @@ class UserController {
         try {
             let authAttempt = await auth.attempt(userData.email, userData.password)
             return response.status(200).json({
+                logued: true,
                 status: 200,
                 user: user,
                 token: authAttempt.token
