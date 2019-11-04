@@ -52,7 +52,7 @@ class UserController {
         return response.status(201).json(user)
       }
     async update ({params, request, response}) {
-        const userInfo = request.only(['username','email', 'password', 'age', 'type'])
+        const userInfo = request.only(['username','email', 'password', 'age', 'type',"activated"])
 
 
         const user = await User.find(params.id)
@@ -64,6 +64,7 @@ class UserController {
         user.password = userInfo.password
         user.age = userInfo.age
         user.type = userInfo.type
+        user.activated = userInfo.activated
 
 
         await user.save()
