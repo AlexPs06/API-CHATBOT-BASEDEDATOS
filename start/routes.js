@@ -27,6 +27,23 @@ Route.group(() => {
   Route.delete('users/:id', 'UserController.delete')
 
 
+  Route.post('lessons', 'LessonController.store')
+  Route.get('lessons', 'LessonController.index')
+  Route.get('lessonsByID', 'LessonController.getByGrade')
+  Route.get('lessonsGroupGrade', 'LessonController.getByGradeAndGroup')
+  Route.get('lessons/:id', 'LessonController.show')
+  Route.put('lessons/:id', 'LessonController.update')
+  Route.delete('lessons/:id', 'LessonController.delete')
+  
+  Route.post('subjects', 'SubjectController.store')
+  Route.get('subjects', 'SubjectController.index')
+  Route.get('subjects/:id', 'SubjectController.show')
+  Route.put('subjects/:id', 'SubjectController.update')
+  Route.delete('subjects/:id', 'SubjectController.delete')
+
+  Route.get('subjectsGrade', 'SubjectController.getByGrade')
+
+  
   Route.post('login', 'UserController.login')
 
 
