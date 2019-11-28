@@ -1,5 +1,6 @@
 'use strict'
 const User = use('App/Models/User')
+const Database = use('Database')
 
 class UserController {
     async index ({response}) {
@@ -12,6 +13,24 @@ class UserController {
         return response.json(user)
     }
 
+
+    async studentsNotLesson({response}){
+
+        //el id de lesson solo se da cuando existe un registro con el id de user 
+        const users = await Database.select('users.id','users.username').from('users')
+                        .leftJoin('lessons','users.id', 'lessons.id_user')
+                        .where({'lessons.id': null,'users.deleted':0,'users.activated':1,'users.type':0} )
+        return response.json(users)
+
+    }
+
+
+    async getStudentsActivated({response}){
+
+        const users = await Database.from('users').where({ activated: true, deleted:0 } )
+
+        return response.json(users)
+    }
     async login ({request,auth, response}) {
         const userData = request.only(['email', 'password'])
         const user = await User.findBy('email', userData.email)

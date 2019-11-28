@@ -24,8 +24,9 @@ class LessonController {
 
 
         const lessonInfo = request.only([ 'grade','group' ])
-        const users = await Database.from('lessons').where({ grade: lessonInfo.grade,group: lessonInfo.group, 'lessons.deleted':0 } ).innerJoin('users', 'id_user', 'users.id')
+        const users = await Database.from('lessons').where({ grade: lessonInfo.grade,group: lessonInfo.group, 'lessons.deleted':0,'users.deleted':0,'users.activated':1 } ).innerJoin('users', 'id_user', 'users.id')
         // const lessons = await Lesson.findBy('grade', lessonInfo.grade)
+        
         return response.json(users)
     }
 
@@ -63,6 +64,16 @@ class LessonController {
 
     async delete ({params, response}) {
         const lesson = await Lesson.find(params.id)
+        if (!lesson) {
+        return response.status(404).json({data: 'Resource not found'})
+        }
+        await lesson.delete()
+
+        return response.status(204).json(null)
+    }
+    async deleteByIdUser({params, response}) {
+        console.log(params)
+        const lesson = await Lesson.findBy('id_user', params.id)
         if (!lesson) {
         return response.status(404).json({data: 'Resource not found'})
         }

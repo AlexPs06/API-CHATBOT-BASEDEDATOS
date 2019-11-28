@@ -22,9 +22,11 @@ Route.get('/', () => {
 Route.group(() => {
   Route.post('users', 'UserController.store')
   Route.get('users', 'UserController.index')
+  Route.get('usersActivated', 'UserController.getStudentsActivated')
   Route.get('users/:id', 'UserController.show')
   Route.put('users/:id', 'UserController.update')
   Route.delete('users/:id', 'UserController.delete')
+  Route.get('usersNotLesson', 'UserController.studentsNotLesson')
 
 
   Route.post('lessons', 'LessonController.store')
@@ -34,6 +36,7 @@ Route.group(() => {
   Route.get('lessons/:id', 'LessonController.show')
   Route.put('lessons/:id', 'LessonController.update')
   Route.delete('lessons/:id', 'LessonController.delete')
+  Route.delete('lessonsIdUser/:id', 'LessonController.deleteByIdUser')
   
   Route.post('subjects', 'SubjectController.store')
   Route.get('subjects', 'SubjectController.index')
